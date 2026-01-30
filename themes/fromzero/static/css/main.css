@@ -177,16 +177,16 @@ strong, b {
 }
 
 .footer-icon {
-  color: rgba(255, 255, 255, 0.85);
   line-height: 0;
-  transition: color 0.2s ease;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
 
 .footer-icon:hover {
-  color: white;
+  opacity: 1;
 }
 
-.footer-icon svg {
+.footer-icon img {
   display: block;
 }
 

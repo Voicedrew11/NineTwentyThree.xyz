@@ -2,7 +2,6 @@ baseURL = 'https://ninetwentythree.xyz/'
 languageCode = 'en-us'
 title = 'NineTwentyThree'
 theme = 'fromzero'
-publishDir = "/nginx/www"
 
 [markup.highlight]
 style = 'dracula'

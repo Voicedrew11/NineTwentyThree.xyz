@@ -1,0 +1,11 @@
+baseURL = 'https://ninetwentythree.xyz/'
+languageCode = 'en-us'
+title = 'NineTwentyThree'
+theme = 'fromzero'
+
+[markup.highlight]
+style = 'dracula'
+
+[params]
+github = 'https://github.com/Voicedrew11'
+youtube = 'https://youtube.com/@yourchannel'

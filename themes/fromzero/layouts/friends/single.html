@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{ .Content }}
+  {{ with site.Data.friends }}
+    <div class="friends-list">
+      {{ range . }}
+        <a href="{{ .url }}" class="friend-btn" rel="noopener noreferrer" target="_blank" title="{{ .name }}">
+          <img src="{{ .image }}" width="88" height="31" alt="88×31 button: {{ .name }}">
+        </a>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="friends-empty">No friends yet.</p>
+  {{ end }}
+{{ end }}

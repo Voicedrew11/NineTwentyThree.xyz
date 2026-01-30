@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{ if .Pages }}
+    <ul class="post-list">
+      {{ range .Pages.ByDate.Reverse }}
+        {{ $thumb := .Resources.GetMatch "thumb*" }}
+        {{ $thumb = $thumb | default (.Resources.GetMatch "thumbnail*") }}
+        {{ $thumb = $thumb | default (.Resources.GetMatch "feature*") }}
+        {{ $thumb = $thumb | default (.Resources.GetMatch "cover*") }}
+        {{ $src := cond $thumb $thumb.RelPermalink (.Param "thumbnail" | default "/images/1_CMXXIII.png") }}
+        <li class="post-list-item">
+          <a href="{{ .RelPermalink }}" class="post-list-thumb" aria-hidden="true">
+            <img src="{{ $src }}" alt="" width="160" height="120">
+          </a>
+          <div class="post-list-body">
+            <a href="{{ .RelPermalink }}" class="post-list-title">{{ .Title }}</a>
+            <time class="post-list-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+            {{ with .Summary }}
+              <div class="post-list-summary">{{ . }}</div>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="post-list-more">Read more</a>
+          </div>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p>No posts yet.</p>
+  {{ end }}
+{{ end }}

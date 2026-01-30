@@ -1,0 +1,11 @@
+# Add associate sites and paths to their 88x31 buttons.
+# Use local paths (/images/friends/yourbtn.png) or external URLs.
+# Put 88x31 assets in static/images/friends/ (project root, not the theme).
+
+- name: "Agora Road's Macintosh Cafe"
+  url: "https://forum.agoraroad.com/"
+  image: "/images/friends/agoraroad.gif"
+
+- name: "Andrei.xyz"
+  url: "https://andrei.xyz/"
+  image: "/images/friends/andreixyz.gif"

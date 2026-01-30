@@ -1,0 +1,45 @@
+{{ define "main" }}
+<div class="home-intro">
+  {{ .Content }}
+</div>
+
+{{ with .Param "now" }}
+<section class="home-now" aria-labelledby="home-now-heading">
+  <h2 id="home-now-heading" class="home-now-heading">Now</h2>
+  <div class="home-now-content">{{ . | markdownify }}</div>
+</section>
+{{ end }}
+
+{{ with .Param "contact" }}
+<section class="home-contact" aria-labelledby="home-contact-heading">
+  <h2 id="home-contact-heading" class="home-contact-heading">Contact</h2>
+  <div class="home-contact-content">{{ . | markdownify }}</div>
+</section>
+{{ end }}
+
+{{ $posts := site.GetPage "/posts" }}
+{{ $recent := first 1 ($posts.Pages.ByDate.Reverse) }}
+{{ with index $recent 0 }}
+  <section class="home-recent" aria-labelledby="home-recent-heading">
+    <h2 id="home-recent-heading" class="home-recent-heading">Most recent post</h2>
+    <div class="post-list-item">
+      {{ $thumb := .Resources.GetMatch "thumb*" }}
+      {{ $thumb = $thumb | default (.Resources.GetMatch "thumbnail*") }}
+      {{ $thumb = $thumb | default (.Resources.GetMatch "feature*") }}
+      {{ $thumb = $thumb | default (.Resources.GetMatch "cover*") }}
+      {{ $src := cond $thumb $thumb.RelPermalink (.Param "thumbnail" | default "/images/1_CMXXIII.png") }}
+      <a href="{{ .RelPermalink }}" class="post-list-thumb" aria-hidden="true">
+        <img src="{{ $src }}" alt="" width="160" height="120">
+      </a>
+      <div class="post-list-body">
+        <a href="{{ .RelPermalink }}" class="post-list-title">{{ .Title }}</a>
+        <time class="post-list-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+        {{ with .Summary }}
+          <div class="post-list-summary">{{ . }}</div>
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="post-list-more">Read more</a>
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ end }}

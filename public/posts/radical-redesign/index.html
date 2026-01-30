@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="/images/Emilia_Pin_3.ico" type="image/x-icon">
+      <link rel="stylesheet" href="/css/main.css">
+
+      <title>CMXXIII</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="site-header">
+        <a href="/" class="header_image" role="img" aria-label="CMXXIII logo, link to home"></a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="/">Home</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/posts/">Posts</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/friends/">Friends</a>
+        </nav>
+      </header>
+      <div class="content">
+        
+<h1 id="radical-redesign">Radical Redesign</h1>
+<p>Not long ago, I redesigned my entire website. I did away with my classic <a href="https://aesthetics.fandom.com/wiki/Y2K">Y2K</a> aestetic in favor of a more modern frosted glass look in conjunction with a <a href="https://en.wikipedia.org/wiki/Holy_grail_(web_design)">holy grail layout</a>. At the time, I was extremly impressed with my work, and I would still agree that it was technically impressive. I have, however, decided to tear it down in favor of something more simple.</p>
+<h2 id="iframes">Iframes</h2>
+<p>One of my primary goals in my redesign was to have the entire page fit on a single viewport height; sort of like a <a href="https://en.wikipedia.org/wiki/Single-page_application">single page web app</a>. To pull this off, I made use of a central <a href="https://www.w3schools.com/tags/tag_iframe.asp">iframe</a> of restricted height that would have content loaded into it when hyperlinks in the navbar were clicked by the user.</p>
+<p>One thing that sucks about this approach is that the experience of using the website varies significantly depending on the user&rsquo;s resolution. On a very small screen (~720p or less), elements in the sidebars would be forced off screen while the iframe in the center still maintained it&rsquo;s proper height.</p>
+<p>You definitely can do iframes correctly, but I definitely did not. here are what I think are some (((better))) examples:</p>
+<ul>
+<li><a href="https://purplehello98.neocities.org/main?z=/frame">PurpleHello98</a></li>
+<li><a href="https://melonking.net/melon?z=%2Fhome">MelonKing</a></li>
+</ul>
+<p>Although, to push back on these two sites, they are both virtually unuseable in non-gui browsers (ie. <a href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>, <a href="https://w3m.sourceforge.net/">w3m</a>). To offer some conjecture, if your website can&rsquo;t reasonably be used in such a browser, it&rsquo;s probably too complicated.</p>
+<blockquote>
+<p>&ldquo;If it doesn’t work in Lynx, it doesn’t work at all.&rdquo; - <a href="https://starbreaker.org/blog/tech/personal-web-accessibility-march-2024/index.html">Starbreaker</a></p>
+</blockquote>
+<h2 id="javascript">JavaScript</h2>
+<p>So like, I&rsquo;m not as autistic about JavaScript usage as some other people on the Personal Web™, but I definitely like to follow the philosophy of &ldquo;less is more&rdquo;. One of the great disadvantages of having an iframe dependent layout is that even quite basic functionality of your website becomes JavaScript dependent.</p>
+<p>Lets say, for example, you wanted to link somebody to a blog post I had written. The process of doing this is already more complicated than normal, requiring you to right click on the frame and open it in a new tab. There is, however, an additional problem; On the page you&rsquo;ve just opened there is not background color; which means white text is being shown on a white background. What a mess!</p>
+<p>The reason for this is that the page in question has to have a blank background so that when it is loaded into the iframe, it appears seamless.</p>
+<p>But in this context, it&rsquo;s  all wrong, so to combat this I wrote a bit of JavaScript to detect if the page was being accessed from an iframe, and, if it was not, to change the background color to something sensible like gray.</p>
+<p>Now, in my opinion, that is a pretty ingenious solution, somebody should definitely pay me for it, but it does raise some questions about the efficacy of the &ldquo;single page application&rdquo; I was going for. Have I not just created this problem for myself? A problem which did not previously exist? A problem which is only solved with JavaScript?</p>
+<p>This was not an isolated problem either, for a second example, if I wanted the iframe to start with a particular page loaded (so that I may link somebody a page other than the default one), I would need to use JavaScript to read a tag in the URL and change the page loaded into the iframe.</p>
+<h2 id="what-next">What next?</h2>
+<p>Okay, so I&rsquo;ve explained the problems I had with my previous site, but what now? Is your new design not too radical in the other direction?</p>
+<p>In some ways it definitely is. Besides the use of <a href="https://github.com/morhetz/gruvbox">gruvbox</a>, there is very little character in the visuals of the site.</p>
+<p>But for all the visual character I&rsquo;ve given up, I hope to replace it with substance. I&rsquo;d like to have more on my website that hyperlinks and images. I&rsquo;d like to put a lot more focus on writing. As such, I hope the design of my site somewhat reflects that.</p>
+<p>Here are some sites I took queues from when designing my new site:</p>
+<ul>
+<li><a href="https://risingthumb.xyz/">Risingthumb</a></li>
+<li><a href="https://starbreaker.org/">Starbreaker</a></li>
+<li><a href="https://commodorian.org/blog/index.html">Commodorian</a></li>
+</ul>
+<h2 id="plus-something">Plus Something</h2>
+<p>You might be under the impression that I&rsquo;ve used an SSG to make my new site. truth be told, I just use a shell script to keep the navbar on each page the same. You&rsquo;ll never re-cuck me into using HUGO.</p>
+
+
+<section class="comments-section" aria-label="Comments">
+  <h2 class="comments-heading">Comments</h2>
+  <iframe
+    title="Comments for this post"
+    class="comments-iframe"
+    src="/comments.php?post=radical-redesign"
+  ></iframe>
+</section>
+
+      </div>
+      <footer class="site-footer" aria-label="Footer">
+        <a href="https://voicedrew.xyz" class="footer-left" rel="noopener noreferrer" target="_blank" aria-label="voicedrew.xyz">
+          <img src="/images/ninetwentythree.gif" alt="voicedrew.xyz" class="footer-gif">
+        </a>
+        <div class="footer-icons">
+        <a href="https://github.com/Voicedrew11" class="footer-icon" title="GitHub" rel="noopener noreferrer" target="_blank" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://youtube.com/@yourchannel" class="footer-icon" title="YouTube" rel="noopener noreferrer" target="_blank" aria-label="YouTube">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="/index.xml" class="footer-icon" title="RSS feed" aria-label="RSS feed">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82v4.81zm0-5.18v4.81c9.94.123 17.997 8.18 18.12 18.119h4.817c-.124-12.651-10.293-22.82-22.937-22.943z"/></svg>
+        </a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

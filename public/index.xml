@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on NineTwentyThree</title>
+    <link>https://ninetwentythree.xyz/</link>
+    <description>Recent content in Home on NineTwentyThree</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Apr 2024 02:09:14 -0500</lastBuildDate>
+    <atom:link href="https://ninetwentythree.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Radical Redesign</title>
+      <link>https://ninetwentythree.xyz/posts/radical-redesign/</link>
+      <pubDate>Wed, 03 Apr 2024 02:09:14 -0500</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/radical-redesign/</guid>
+      <description>That time I replaced my very complicated website with a simple one</description>
+    </item>
+    <item>
+      <title>The Bitter Cold</title>
+      <link>https://ninetwentythree.xyz/posts/the-bitter-cold/</link>
+      <pubDate>Mon, 11 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/the-bitter-cold/</guid>
+      <description>My life after high school</description>
+    </item>
+    <item>
+      <title>Cat S22 Flip: Experience and Review.</title>
+      <link>https://ninetwentythree.xyz/posts/cat-s22-flip-experience-and-review/</link>
+      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/cat-s22-flip-experience-and-review/</guid>
+      <description>That time I mained a flip phone for a year</description>
+    </item>
+    <item>
+      <title>Small Web Connectivity</title>
+      <link>https://ninetwentythree.xyz/posts/small-web-connectivity/</link>
+      <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/small-web-connectivity/</guid>
+      <description>About webrings and the like</description>
+    </item>
+    <item>
+      <title>Markdown Madness</title>
+      <link>https://ninetwentythree.xyz/posts/markdown-madness/</link>
+      <pubDate>Sun, 03 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/markdown-madness/</guid>
+      <description>Overengineerd python script that basically does the same thing as a static site generator anyways</description>
+    </item>
+    <item>
+      <title>Don&#39;t use an SSG</title>
+      <link>https://ninetwentythree.xyz/posts/dont-use-an-ssg/</link>
+      <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/dont-use-an-ssg/</guid>
+      <description>Static site generators are convenient but ultimately homogenizing, and if you’re making a personal website you should embrace friction and build it from scratch</description>
+    </item>
+    <item>
+      <title>Yesterweb: Requiem of Silence</title>
+      <link>https://ninetwentythree.xyz/posts/yesterweb-a-requiem-of-silence/</link>
+      <pubDate>Mon, 03 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/yesterweb-a-requiem-of-silence/</guid>
+      <description>Yesterweb failed because bad leadership and moderation choices, a shift toward low-effort engagement, and the imposition of exclusionary political ideology undermining a promising movement</description>
+    </item>
+    <item>
+      <title>How I Created the Travelers of Agora Road Webring</title>
+      <link>https://ninetwentythree.xyz/posts/how-i-created-travelers-of-agora-road-webring/</link>
+      <pubDate>Fri, 30 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/posts/how-i-created-travelers-of-agora-road-webring/</guid>
+      <description>The Travelers of Agora Road webring has grown to 20 members, so I thought I would explain the process of creating it, along with the resources I used.</description>
+    </item>
+    <item>
+      <title>Friends</title>
+      <link>https://ninetwentythree.xyz/friends/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://ninetwentythree.xyz/friends/</guid>
+      <description>&lt;p&gt;Sites I&amp;rsquo;m happy to associate with.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{ .Content }}
+
+<section class="comments-section" aria-label="Comments">
+  <h2 class="comments-heading">Comments</h2>
+  <iframe
+    title="Comments for this post"
+    class="comments-iframe"
+    src="/comments.php?post={{ .File.ContentBaseName }}"
+  ></iframe>
+</section>
+{{ end }}

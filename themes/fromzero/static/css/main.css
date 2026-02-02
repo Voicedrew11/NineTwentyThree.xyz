@@ -178,16 +178,17 @@ strong, b {
 
 .footer-icon {
   line-height: 0;
-  opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 
-.footer-icon:hover {
-  opacity: 1;
+.footer-icon:hover img {
+  filter: invert(50%) sepia(93%) saturate(1352%) hue-rotate(224deg) brightness(115%) contrast(87%);
 }
 
 .footer-icon img {
   display: block;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(224deg) brightness(101%) contrast(87%);
+  transition: filter 0.2s ease;
 }
 
 .content p:first-of-type {

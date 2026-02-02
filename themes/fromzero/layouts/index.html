@@ -27,7 +27,8 @@
       {{ $thumb = $thumb | default (.Resources.GetMatch "thumbnail*") }}
       {{ $thumb = $thumb | default (.Resources.GetMatch "feature*") }}
       {{ $thumb = $thumb | default (.Resources.GetMatch "cover*") }}
-      {{ $src := cond $thumb $thumb.RelPermalink (.Param "thumbnail" | default "/images/1_CMXXIII.png") }}
+      {{ $src := .Param "thumbnail" | default "/images/1_CMXXIII.png" }}
+      {{ if $thumb }}{{ $src = $thumb.RelPermalink }}{{ end }}
       <a href="{{ .RelPermalink }}" class="post-list-thumb" aria-hidden="true">
         <img src="{{ $src }}" alt="" width="160" height="120">
       </a>

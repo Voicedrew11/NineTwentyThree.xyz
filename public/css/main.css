@@ -27,9 +27,11 @@ body {
   color: white;
   font-family: sans-serif;
   background-color: #000; /* fallback */
-  background-image: url("/images/tile.png");
-  background-repeat: repeat;
-  background-size: auto;
+  background-image: url("/images/9_bg.png");
+  background-repeat: space;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   min-height: 100vh;
   cursor: url("/images/emilia.cur"), auto;
 }
@@ -50,6 +52,15 @@ a, button {
 
 strong, b {
   color: #756aab;
+}
+
+ul:not(.post-list) {
+  list-style: none;
+  padding-left: 1em;
+}
+ul:not(.post-list) li::before {
+  content: "❄ ";
+  margin-right: 0.25rem;
 }
 
 .content a:not(.post-list-title):not(.post-list-more) {
@@ -80,7 +91,7 @@ strong, b {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 0;
+  padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
@@ -142,7 +153,7 @@ strong, b {
 .comments-iframe {
   display: block;
   width: 100%;
-  min-height: 220px;
+  min-height: 360px;
   border: none;
   background: transparent;
 }
@@ -152,7 +163,7 @@ strong, b {
   max-width: calc(960px + 4rem + 6px);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   gap: 1rem;
   padding: 1rem 0 1.5rem;
   margin-top: 0.5rem;
@@ -160,7 +171,16 @@ strong, b {
   flex-shrink: 0;
 }
 
-.footer-left {
+.footer-buttons {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  line-height: 0;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.footer-btn {
   line-height: 0;
 }
 
@@ -170,24 +190,61 @@ strong, b {
   width: auto;
 }
 
+.footer-webring {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 0;
+}
+.footer-webring-arrow {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.footer-webring-arrow:hover {
+  color: orange;
+}
+.footer-webring img {
+  display: block;
+  height: 31px;
+  width: auto;
+}
+
+.friends-webring {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 0;
+}
+.friends-webring img {
+  display: block;
+  height: 31px;
+  width: auto;
+}
+
 .footer-icons {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .footer-icon {
-  color: rgba(255, 255, 255, 0.85);
   line-height: 0;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
-.footer-icon:hover {
-  color: white;
+.footer-icon:hover img {
+  filter: brightness(0) invert(1);
 }
 
-.footer-icon svg {
+.footer-icon img {
   display: block;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
 }
 
 .content p:first-of-type {
@@ -204,11 +261,28 @@ strong, b {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 1.25rem;
+  gap: 0.75rem;
   margin: 1rem 0;
   border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 1rem;
   border-radius: 4px;
+}
+
+.home-hero-bio ul {
+  padding-left: 0.5rem;
+  margin: 0 1.5rem 0 0;
+}
+.home-hero-bio ul li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.home-hero-bio ul li strong {
+  min-width: 7.5em;
+  flex-shrink: 0;
+}
+.home-hero-bio ul li::before {
+  content: none !important;
 }
 
 .home-hero-bio img {
@@ -362,12 +436,12 @@ strong, b {
 
 .header_image {
   display: block;
-  background-image: url("/images/2_CMXXIII.png");
+  background-image: url("/images/5_CMXXIII.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 140px;
-  height: 48px;
+  width: 168px;
+  height: 56px;
   flex-shrink: 0;
   text-decoration: none;
 }

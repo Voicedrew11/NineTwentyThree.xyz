@@ -7,14 +7,28 @@
       <link rel="icon" href="{{ "images/Emilia_Pin_3.ico" | relURL }}" type="image/x-icon">
       <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 
-      <title>CMXXIII | NineTwentyThree</title>
+      {{ $img := "" }}
+      {{ with .Resources.GetMatch "thumb*" }}{{ $img = .Permalink }}{{ end }}
+      {{ if not $img }}{{ with .Resources.GetMatch "thumbnail*" }}{{ $img = .Permalink }}{{ end }}{{ end }}
+      {{ if not $img }}{{ $img = (.Params.thumbnail | default .Site.Params.og_image | default "/images/5_CMXXIII.png") | absURL }}{{ end }}
+      <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+      <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description | default .Site.Title }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Title }}{{ end }}{{ end }}">
+      <meta property="og:image" content="{{ $img }}">
+      <meta property="og:url" content="{{ .Permalink }}">
+      <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+      <meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description | default .Site.Title }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Title }}{{ end }}{{ end }}">
+      <meta name="twitter:image" content="{{ $img }}">
+
+      <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   </head>
   <body>
     <main class="page">
       <header class="site-header">
         <a href="/" class="header_image" role="img" aria-label="CMXXIII logo, link to home"></a>
         <nav class="site-nav" aria-label="Main">
-          <a href="/">Home</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/posts/">Posts</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/friends/">Friends</a>
+          <a href="/">Home</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/posts/">Posts</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/friends/">Friends</a><span class="nav-sep" aria-hidden="true">❄</span><a href="/guestbook/">Guestbook</a>
         </nav>
       </header>
       <div class="content">
@@ -22,9 +36,20 @@
         {{ end }}
       </div>
       <footer class="site-footer" aria-label="Footer">
-        <a href="/" class="footer-left" aria-label="NineTwentyThree">
-          <img src="{{ "images/ninetwentythree.gif" | relURL }}" alt="NineTwentyThree" class="footer-gif">
-        </a>
+        <div class="footer-buttons">
+          <a href="/" class="footer-btn" aria-label="voicedrew.xyz">
+            <img src="{{ "images/voicedrew.xyz.gif" | relURL }}" alt="voicedrew.xyz" class="footer-gif">
+          </a>
+          <a href="/" class="footer-btn" aria-label="CMXXIII">
+            <img src="{{ "images/CMXXIII.gif" | relURL }}" alt="CMXXIII" class="footer-gif">
+          </a>
+        </div>
+        <div class="footer-webring">
+          <a href="https://thekarmapolice.neocities.org/" class="footer-webring-arrow" rel="noopener noreferrer" target="_blank" aria-label="Previous site">&lt;</a>
+          <a href="https://risingthumb.github.io/Travelers-of-Agora-Road-webring/" rel="noopener noreferrer" target="_blank" aria-label="Travelers of Agora Road webring">
+            <img src="https://risingthumb.github.io/Travelers-of-Agora-Road-webring/img/traveller.png" alt="Travelers of Agora Road webring">
+          </a>
+        </div>
         <div class="footer-icons">
         <a href="{{ .Site.Params.github | default "https://github.com" }}" class="footer-icon" title="GitHub" rel="noopener noreferrer" target="_blank" aria-label="GitHub">
           <img src="{{ "images/github.svg" | relURL }}" alt="" width="24" height="24">

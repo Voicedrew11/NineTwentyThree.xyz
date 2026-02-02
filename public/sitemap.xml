@@ -3,10 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ninetwentythree.xyz/</loc>
-    <lastmod>2024-04-03T02:09:14-05:00</lastmod>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ninetwentythree.xyz/posts/</loc>
-    <lastmod>2024-04-03T02:09:14-05:00</lastmod>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ninetwentythree.xyz/posts/radical-redesign/</loc>
     <lastmod>2024-04-03T02:09:14-05:00</lastmod>
@@ -35,6 +35,8 @@
     <loc>https://ninetwentythree.xyz/categories/</loc>
   </url><url>
     <loc>https://ninetwentythree.xyz/friends/</loc>
+  </url><url>
+    <loc>https://ninetwentythree.xyz/guestbook/</loc>
   </url><url>
     <loc>https://ninetwentythree.xyz/tags/</loc>
   </url>

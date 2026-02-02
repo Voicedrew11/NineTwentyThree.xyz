@@ -64,11 +64,51 @@ function csrf_ok() {
     return isset($_POST['csrf'], $_SESSION['comments_csrf']) && hash_equals($_SESSION['comments_csrf'], $_POST['csrf']);
 }
 
+/** Rate limit: 1 comment per IP per post per 5 minutes. Returns true if allowed, false if rate limited. */
+function rate_limit_check_and_record($data_dir, $post, $record = false) {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $key = preg_replace('/[^a-zA-Z0-9_.-]/', '', $ip) . '_' . $post;
+    $path = $data_dir . '/.rate_limit.json';
+    $window = 300; // 5 minutes
+    $max = 1;
+
+    ensure_data_dir($data_dir);
+    $fp = fopen($path, 'c+');
+    if (!$fp) return true; // fail open
+    flock($fp, LOCK_EX);
+
+    $raw = stream_get_contents($fp);
+    $data = json_decode($raw, true);
+    if (!is_array($data)) $data = [];
+
+    $now = time();
+    $data[$key] = array_values(array_filter($data[$key] ?? [], function ($t) use ($now, $window) {
+        return $now - $t < $window;
+    }));
+
+    if (count($data[$key]) >= $max) {
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        return false;
+    }
+
+    if ($record) {
+        $data[$key][] = $now;
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode($data));
+    }
+
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    return true;
+}
+
 $post = isset($_REQUEST['post']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', (string) $_REQUEST['post']) : null;
 $posted = isset($_GET['posted']);
 
 // #region agent log
-dbg('A', 'comments.php:request', 'request start', ['method' => $_SERVER['REQUEST_METHOD'] ?? '?', 'post' => $post, 'has_author' => isset($_POST['author']), 'has_comment' => isset($_POST['comment']), 'has_csrf' => isset($_POST['csrf']), 'session_status' => session_status()]);
+dbg('A', 'comments.php:request', 'request start', ['method' => $_SERVER['REQUEST_METHOD'] ?? '?', 'post' => $post, 'has_email' => isset($_POST['email']), 'has_comment' => isset($_POST['comment']), 'has_csrf' => isset($_POST['csrf']), 'session_status' => session_status()]);
 // #endregion
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -97,20 +137,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /comments.php?post=' . urlencode($post) . '&err=csrf');
         exit;
     }
-    $author = isset($_POST['author']) ? trim((string) $_POST['author']) : '';
+    $email = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
     $body = isset($_POST['comment']) ? trim((string) $_POST['comment']) : '';
-    if ($author !== '' && $body !== '') {
+    if ($email !== '' && $body !== '') {
         // #region agent log
-        dbg('E', 'comments.php:before_mb', 'before substr', ['author_len' => strlen($author), 'body_len' => strlen($body)]);
+        dbg('E', 'comments.php:before_mb', 'before substr', ['email_len' => strlen($email), 'body_len' => strlen($body)]);
         // #endregion
-        $author = substr($author, 0, 128);
+        $email = substr($email, 0, 128);
         $body = substr($body, 0, 4096);
         // #region agent log
         dbg('E', 'comments.php:after_mb', 'after substr', []);
         // #endregion
+        if (!rate_limit_check_and_record($DATA_DIR, $post, true)) {
+            header('Location: /comments.php?post=' . urlencode($post) . '&err=ratelimit');
+            exit;
+        }
         $comments[] = [
             'date' => date('c'),
-            'author' => $author,
+            'author' => $email,
             'comment' => $body,
         ];
         // #region agent log
@@ -143,9 +187,10 @@ header('Content-Type: text/html; charset=utf-8');
     body { color: #fff; font-family: sans-serif; background: transparent; margin: 0; padding: 0.5rem 0; }
     .comments-inner { max-width: 100%; }
     .c-form label { display: block; margin-top: 0.5rem; }
-    .c-form input[type="text"], .c-form textarea { width: 100%; max-width: 400px; padding: 0.35rem 0.5rem; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.25); border-radius: 4px; color: #fff; }
+    .c-form input[type="email"], .c-form input[type="text"], .c-form textarea { width: 100%; max-width: 400px; padding: 0.35rem 0.5rem; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.25); border-radius: 4px; color: #fff; }
     .c-form textarea { min-height: 80px; resize: vertical; }
-    .c-form button { margin-top: 0.5rem; padding: 0.4rem 0.75rem; background: #756aab; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    .c-form .c-submit-wrap { margin-top: 0.75rem; }
+    .c-form button { display: block; width: 100%; max-width: 400px; padding: 0.5rem 1rem; background: #756aab; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
     .c-form button:hover { opacity: 0.9; }
     .c-msg { margin-bottom: 0.75rem; padding: 0.35rem 0.5rem; background: rgba(117,106,171,.2); border-radius: 4px; font-size: 0.9rem; }
     .c-list { margin: 0 0 1.5rem; }
@@ -164,7 +209,9 @@ header('Content-Type: text/html; charset=utf-8');
     <?php if ($err === 'csrf'): ?>
       <p class="c-msg">Invalid request. Please try again.</p>
     <?php elseif ($err === 'empty'): ?>
-      <p class="c-msg">Name and comment are required.</p>
+      <p class="c-msg">Email and comment are required.</p>
+    <?php elseif ($err === 'ratelimit'): ?>
+      <p class="c-msg">One comment per 5 minutes per page. Please wait before posting again.</p>
     <?php endif; ?>
 
     <div class="c-list">
@@ -182,11 +229,11 @@ header('Content-Type: text/html; charset=utf-8');
     <form class="c-form" method="post" action="<?php echo htmlspecialchars('/comments.php'); ?>" autocomplete="off">
       <?php echo csrf_field(); ?>
       <input type="hidden" name="post" value="<?php echo sanitize($post); ?>">
-      <label for="c-author">Name</label>
-      <input type="text" id="c-author" name="author" required maxlength="128" placeholder="Your name" autocomplete="off">
+      <label for="c-email">Email</label>
+      <input type="email" id="c-email" name="email" required maxlength="128" placeholder="Your email" autocomplete="off">
       <label for="c-comment">Comment</label>
       <textarea id="c-comment" name="comment" required maxlength="4096" placeholder="Your comment" autocomplete="off"></textarea>
-      <button type="submit">Post comment</button>
+      <div class="c-submit-wrap"><button type="submit">Post comment</button></div>
     </form>
   </div>
 </body>

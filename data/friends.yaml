@@ -9,3 +9,23 @@
 - name: "Andrei.xyz"
   url: "https://andrei.xyz/"
   image: "/images/friends/andreixyz.gif"
+
+- name: "Punp"
+  url: "https://punp.neocities.org/"
+  image: "/images/friends/punp.gif"
+
+- name: "Manpaint"
+  url: "https://manpaint.neocities.org/"
+  image: "/images/friends/manpaint.png"
+
+- name: "Vulonkaaz"
+  url: "https://vulonkaaz.zip/"
+  image: "/images/friends/vulonkaaz.png"
+
+- name: "Lostinthecycle"
+  url: "https://lostinthecycle.xyz/"
+  image: "/images/friends/lostinthecycle.gif"
+
+- name: "Alix"
+  url: "https://setagayacabin.nekoweb.org/"
+  image: "/images/friends/alix.png"

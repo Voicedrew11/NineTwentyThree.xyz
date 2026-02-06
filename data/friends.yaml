@@ -29,3 +29,27 @@
 - name: "Alix"
   url: "https://setagayacabin.nekoweb.org/"
   image: "/images/friends/alix.png"
+
+- name: "No56"
+  url: "https://no56.neocities.org/"
+  image: "/images/friends/no56.png"
+
+- name: "Idelides"
+  url: "https://idelides.xyz/"
+  image: "/images/friends/idelides.png"
+
+- name: "WhiteVHS"
+  url: "https://whitevhs.xyz/"
+  image: "/images/friends/whiteVHS.png"
+
+- name: "Genosad"
+  url: "https://genosadness.neocities.org/"
+  image: "/images/friends/genobot.png"
+
+- name: "Purple Hello 98"
+  url: "https://purplehello98.neocities.org/"
+  image: "/images/friends/purplehello98.gif"
+
+- name: "Aral"
+  url: "https://aralsheart.nekoweb.org/"
+  image: "/images/friends/aral.png"

@@ -53,3 +53,7 @@
 - name: "Aral"
   url: "https://aralsheart.nekoweb.org/"
   image: "/images/friends/aral.png"
+
+- name: "Risingthumb"
+  url: "https://risingthumb.xyz/"
+  image: "/images/friends/risingthumb.png"
